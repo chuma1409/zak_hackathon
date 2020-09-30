@@ -1,7 +1,9 @@
 body {
   background-color: blanchedalmond;
 }
-
+#zak{
+  padding-left: 5em;
+}
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: white;
@@ -16,6 +18,7 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  padding-top: 3em;
 }
 
 /* Change the color of links on hover */
@@ -26,10 +29,17 @@ body {
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: white;
+ background-color: white; 
   color: black;
 }
 
+#back {
+  background-color: cadetblue;
+  padding: 1em;
+  margin-top: 2em;
+  float: left;
+  font-weight: bold;
+}
 
 .checked {
     color: orange;
@@ -41,4 +51,9 @@ body {
   
   table, th, td {
     border: 1px solid black;
+    padding: 1em;
+  }
+
+  .removeitem{
+    font-size: small;
   }

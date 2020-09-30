@@ -7,7 +7,6 @@ const Zak = require('./zak_fact_func.js');
 const zak = Zak();
 const app = express();
 
-
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({
     layoutsDir: './views/layouts'
@@ -36,9 +35,9 @@ app.use(bodyParser.json())
 
 app.use(express.static('public'));
 
-app.get("/login", function(req, res) {
-    req.session.regenerate(function() {
-       res.redirect("/"); 
+app.get("/login", function (req, res) {
+    req.session.regenerate(function () {
+        res.redirect("/");
     });
 })
 
@@ -49,44 +48,83 @@ app.get('/', function (req, res) {
         updateCart: zak.getProducts()
     });
 
-    
+
 });
 
 app.get('/viewcart', function (req, res) {
     res.render('viewcart', {
-        cart : req.session.cart || {}
+        cart: req.session.cart || {}
     })
 })
 app.get('/dashboard', function (req, res) {
 
-
     res.render('dashboard', {
 
     })
-})
-app.post('/cart', function (req, res) {
+});
 
-    
-    const product = zak.getProductById(req.body.productId);
 
-    if (!req.session.cart) {
-        req.session.cart = {
-            items : [],
-            total : 0
+function addToCart(currentCart, productId) {
+    let cart = currentCart;
+
+    // if the cart doesn't exist yet create a cart
+    if (!cart) {
+        cart = {
+            items: [],
+            total: 0
         };
     }
 
-    req.session.cart.items.push(product)
-    req.session.cart.total += product.price;
+    const product = zak.getProductById(productId);
+    cart.items.push(product)
+    cart.total += product.price;
+    
+    return cart;
+}
 
+app.post('/cart', function (req, res) {
 
-    console.log(req.session.cart);
-
+    req.session.cart = addToCart(req.session.cart, req.body.productId);
+    
     res.redirect('/')
 })
+
+app.post('/clearcart', function (req, res) {
+    if (req.session.cart) {
+        req.session.cart = {
+            items: [],
+            total: 0
+        }
+    };
+
+    res.render('viewcart', {
+
+    })
+})
+
+app.get('/removeItem/:productId', function (req, res) {
+
+
+    
+    // let itemsArray = req.session.cart.items.push(product)
+
+    const productId = req.params.productId;
+
+    const product = zak.getProductById(productId);
+
+    req.session.cart.items = req.session.cart.items.filter(function(item){
+          return item.id != productId
+    });
+
+    req.session.cart.total -= product.price;
+
+    
+    res.redirect("/viewcart");
+
+});
 
 
 const PORT = process.env.PORT || 3011;
 app.listen(PORT, function () {
     console.log("App started at port:", PORT)
-})
+});

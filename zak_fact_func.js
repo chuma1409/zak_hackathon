@@ -1,5 +1,7 @@
 let zak_fact_func = function(){
 
+    let cart = [];
+
     const products = [{
         id: 17,
         description: "Shoez",
@@ -36,10 +38,24 @@ let zak_fact_func = function(){
         });
     }
 
+function addToCart(id){
+if(products.id == id){
+cart.push(id)
+console.log(cart)
+return cart
+}
+}
+
+// function removeItem(id){
+// if(){}
+    
+// }
+
 
     return{
         getProductById,
-        getProducts
+        getProducts,
+        addToCart
     }
 }
 
