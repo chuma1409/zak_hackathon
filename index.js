@@ -10,14 +10,14 @@ const app = express();
 
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({
-  layoutsDir: './views/layouts'
+    layoutsDir: './views/layouts'
 }));
 
 // initialise session middleware - flash-express depends on it
 app.use(session({
-  secret: "<add a secret string here>",
-  resave: false,
-  saveUninitialized: true
+    secret: "th1s is m9 c@rt ",
+    resave: false,
+    saveUninitialized: true
 }));
 
 // initialise the flash middleware
@@ -25,8 +25,8 @@ app.use(flash());
 
 
 app.get('/addFlash', function (req, res) {
-  req.flash('info', 'Flash Message Added');
-  res.redirect('/');
+    req.flash('info', 'Flash Message Added');
+    res.redirect('/');
 });
 
 // parse application/x-www-form-urlencoded
@@ -36,4 +36,57 @@ app.use(bodyParser.json())
 
 app.use(express.static('public'));
 
+app.get("/login", function(req, res) {
+    req.session.regenerate(function() {
+       res.redirect("/"); 
+    });
+})
 
+
+app.get('/', function (req, res) {
+
+    res.render('index', {
+        updateCart: zak.getProducts()
+    });
+
+    
+});
+
+app.get('/viewcart', function (req, res) {
+    res.render('viewcart', {
+        cart : req.session.cart || {}
+    })
+})
+app.get('/dashboard', function (req, res) {
+
+
+    res.render('dashboard', {
+
+    })
+})
+app.post('/cart', function (req, res) {
+
+    
+    const product = zak.getProductById(req.body.productId);
+
+    if (!req.session.cart) {
+        req.session.cart = {
+            items : [],
+            total : 0
+        };
+    }
+
+    req.session.cart.items.push(product)
+    req.session.cart.total += product.price;
+
+
+    console.log(req.session.cart);
+
+    res.redirect('/')
+})
+
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, function () {
+    console.log("App started at port:", PORT)
+})

@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <labelnk rel="stylesheet" href="./css/zak.css">
+    <labelnk rel="stylesheet" href="./css/simple-grid.css">
     <title>Zakzuka!</title>
 </head>
+
 <body>
     <div class="container">
-    <div class="row">
-<div class="col-12">
-    <h1>Zakzuka</h1>
-    <ul>
-        <li>product 1</li>
-        <li>product 2</li>
-        <li>product 3</li>
-        <li>product 4</li>
-        <li>product 5</li>
-        <li>product 6</li>
-        <li>product 7</li>
-        <li>product 8</li>
-        <li>product 9</li>
 
-    </ul>
-</div>
-</div>
+
+        <div class="row">
+            <div class="col-12">
+                <h1>Zakzuka</h1>
+                <div class="col-6">
+                    <button><a href="/viewcart">view cart</a></button>
+
+                </div>
+                  <div class="col-6">
+                    <button><a href="/dashboard">view dashboard</a></button>
+
+                </div>
+            </div>
+
+        </div>
+
+            <div class="row">
+                <div class="col-12">
+                    
+                    {{#each updateCart }}
+                        <div class="col-3">
+                            <h4>
+                                 {{description}}   
+                            </h4>
+                            <strong>{{price}}</strong>
+
+                            <form action="/cart" method="POST" >
+                                <input type="hidden" name="productId" value="{{id}}" >
+                                <button>add to cart</button>
+                            </form>
+
+                        </div>
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        
+    </div>
     </div>
 </body>
+
 </html>
