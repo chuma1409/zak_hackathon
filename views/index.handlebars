@@ -4,53 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <labelnk rel="stylesheet" href="./css/zak.css">
-    <labelnk rel="stylesheet" href="./css/simple-grid.css">
-    <title>Zakzuka!</title>
+    <labelnk rel="stylesheet" href="./css/zak.css">
+        <labelnk rel="stylesheet" href="./css/simple-grid.css">
+            <title>Zakzuka!</title>
 </head>
 
 <body>
     <div class="container">
 
-
+        <div class="row">
+<div class="col-4"> <h1>Zakzuka!</h1></div>
+            <div class="col-8">
+                <div class="topnav">
+                    <a class="active" href="/">Home</a>
+                    <a href="/viewcart">View Cart</a>
+                    <a href="/dashboard">View Dashboard</a>
+                  
+                </div>
+            </div>
+        </div>
+        
         <div class="row">
             <div class="col-12">
-                <h1>Zakzuka</h1>
-                <div class="col-6">
-                    <button><a href="/viewcart">view cart</a></button>
+
+                {{#each updateCart }}
+                <div class="col-3">
+                    <h4>
+                        {{description}}
+                    </h4>
+                    <strong>{{price}}</strong>
+
+                    <form action="/cart" method="POST">
+                        <input type="hidden" name="productId" value="{{id}}">
+                        <button>add to cart</button>
+                    </form>
 
                 </div>
-                  <div class="col-6">
-                    <button><a href="/dashboard">view dashboard</a></button>
+                {{/each}}
 
-                </div>
             </div>
 
         </div>
 
-            <div class="row">
-                <div class="col-12">
-                    
-                    {{#each updateCart }}
-                        <div class="col-3">
-                            <h4>
-                                 {{description}}   
-                            </h4>
-                            <strong>{{price}}</strong>
 
-                            <form action="/cart" method="POST" >
-                                <input type="hidden" name="productId" value="{{id}}" >
-                                <button>add to cart</button>
-                            </form>
-
-                        </div>
-                    {{/each}}
-
-                </div>
-
-            </div>
-
-        
     </div>
     </div>
 </body>
