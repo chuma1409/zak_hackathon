@@ -42,7 +42,7 @@ app.get("/login", function (req, res) {
 })
 
 
-app.get('/', function (req, res) {
+app.get('/', async function (req, res) {
     let userMessage = req.body.myreview;
      console.log(userMessage);
 
@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
      
 
     res.render('index', {
-        updateCart: zak.getProducts()
+        updateCart: await zak.getProducts()
     });
 
 

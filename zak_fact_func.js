@@ -1,38 +1,21 @@
 let zak_fact_func = function () {
 
-    let cart = [];
+    const pg = require("pg");
+    const Pool = pg.Pool;
+    const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/zak_hackathon';
+    const pool = new Pool({
+        connectionString
+    });
 
-   let msg = '';
+    let msg = '';
 
-    const products = [{
-        id: 17,
-        description: "Shoez",
-        price: 125.75
-    }, {
-        id: 18,
-        description: "Shirtz",
-        price: 109.75
-    }, {
-        id: 17,
-        description: "Shoez",
-        price: 125.75
-    }, {
-        id: 18,
-        description: "Shirtz",
-        price: 109.75
-    }, {
-        id: 17,
-        description: "Shoez",
-        price: 125.75
-    }, {
-        id: 18,
-        description: "Shirtz",
-        price: 109.75
-    }];
+    let getProducts = async function () {
+        let products = await pool.query(`SELECT * FROM   store_products`);
+        console.log(products.rows)
+        return products.rows
 
-    function getProducts() {
-        return products;
     }
+
 
     function getProductById(id) {
         return products.find(function (product) {
@@ -41,13 +24,13 @@ let zak_fact_func = function () {
     }
 
 
-    function postReview(userMessage){
-        if(userMessage){
-        msg = userMessage
+    function postReview(userMessage) {
+        if (userMessage) {
+            msg = userMessage
         }
     }
 
-    function getMsg(){
+    function getMsg() {
         return msg;
     }
 
@@ -56,7 +39,7 @@ let zak_fact_func = function () {
         getProductById,
         getProducts,
         postReview,
-        getMsg
+        getMsg,
     }
 }
 
