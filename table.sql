@@ -31,3 +31,13 @@ VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway
 
 insert into stores(store_name, store_code) values('Lilly_Cosmetics', 'L123');
 insert into stores(store_name, store_code) values('By Moses', 'M123');
+
+
+
+
+insert into store_products (product_id, description, price, units_sold, store_id) values('D','refreshing mask', 15.0, 0, 1);
+
+
+insert into store_products (product_id, description, price, units_sold, store_id) values('H','Coffee cups', 15.0, 0, 2);
+
+UPDATE store_products (product_id, description, price, units_sold, store_id) values('H','Coffee cups', 15.0, 0, 2);

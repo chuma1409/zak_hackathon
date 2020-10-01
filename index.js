@@ -50,24 +50,46 @@ app.get('/', async function (req, res) {
         req.flash('info', 'Review sent!');
     }
 
+    const products = await zak.getProducts();
 
     res.render('index', {
-        updateCart: await zak.getProducts(),
-        storeName: await zak.productStore()
+        updateCart: products
+        // storeName: await zak.productStore()
     });
 
 
 });
 
-app.get('/viewcart', function (req, res) {
+app.get('/viewcart', async function (req, res) {
     res.render('viewcart', {
-        cart: req.session.cart || {}
+        cart: await req.session.cart || {}
     })
 })
-app.get('/dashboard', function (req, res) {
+app.get('/dashboard', async function (req, res) {
 
+    const sum = req.session.cart;
+    const { items } = sum || []
+
+    // console.log(sum.items);
+    var bussiness = {};
+
+    for (let i = 0; i < items.length; i++) {
+        const element = items[i].store_name;
+        const price = Number(items[i].price);
+        if(bussiness[element] === undefined) {
+            bussiness[element] = 0;
+        }
+        bussiness[element] += price;
+        
+    }
+
+
+    
     res.render('dashboard', {
         msg: zak.getMsg(),
+        i: (sum && sum.total) ? sum.total : 0,
+        bussiness,
+        // stores: (sum && sum.items) ? sum.items : []
     })
 });
 
@@ -83,7 +105,7 @@ app.post('/reviews', function (req, res) {
 
 })
 
-function addToCart(currentCart, productId) {
+async function addToCart(currentCart, productId) {
     let cart = currentCart;
 
     // if the cart doesn't exist yet create a cart
@@ -94,22 +116,22 @@ function addToCart(currentCart, productId) {
         };
     }
 
-    const product = zak.getProductById(productId);
+    let product = await zak.getProductById(productId);
     cart.items.push(product)
-    cart.total += product.price;
+    cart.total += parseFloat (product.price);
 
     return cart;
 }
 
-app.post('/cart', function (req, res) {
+app.post('/cart',async function (req, res) {
 
-    req.session.cart = addToCart(req.session.cart, req.body.productId);
+    req.session.cart = await addToCart(req.session.cart, req.body.productId);
 
     res.redirect('/')
 })
 
-app.post('/clearcart', function (req, res) {
-    if (req.session.cart) {
+app.post('/clearcart', async function (req, res) {
+    if ( await req.session.cart) {
         req.session.cart = {
             items: [],
             total: 0
@@ -121,19 +143,19 @@ app.post('/clearcart', function (req, res) {
     })
 })
 
-app.get('/removeItem/:productId', function (req, res) {
+app.get('/removeItem/:productId', async function (req, res) {
 
     // let itemsArray = req.session.cart.items.push(product)
 
     const productId = req.params.productId;
 
-    const product = zak.getProductById(productId);
+    const product =await  zak.getProductById(productId);
 
-    req.session.cart.items = req.session.cart.items.filter(function (item) {
+    req.session.cart.items = await req.session.cart.items.filter(function (item) {
         return item.id != productId
     });
 
-    req.session.cart.total -= product.price;
+    req.session.cart.total -= parseFloat(product.price);
 
 
     res.redirect("/viewcart");

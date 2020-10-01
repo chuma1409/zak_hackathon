@@ -12,27 +12,27 @@ let zak_fact_func = function () {
     let getProducts = async function () {
         
         let storeName = await pool.query(
-            `SELECT store_name, store_products.description, store_products.price
+            `SELECT store_name, store_products.description, store_products.price, store_products.product_id as id, store_id
          FROM stores 
          FULL OUTER JOIN  store_products
          ON stores.id = store_products.store_id
          WHERE id = store_id`)
+         console.log(storeName.rows)
 
         return storeName.rows;
 
 
     }
 
-    let productStore = async function () {
-        let storeName = await pool.query(
-            `SELECT store_name, store_products.description, store_products.price
-         FROM stores 
-         FULL OUTER JOIN  store_products
-         ON stores.id = store_products.store_id
-         WHERE id = store_id`)
+    let totalSalesPerStore= async function (storeId) {
+        // let storeData = getProducts();
+        // storeData.products.store_id
 
-        console.log(storeName.rows)
+        const sql = 'select sum(price) from store_products where store_id = $1'
+        let individualSales = await pool.query(sql, [storeId])
+        console.log(individualSales.rows)
 
+        return individualSales.rows[0].sum;
     }
 
     let store = async function(){
@@ -65,7 +65,7 @@ let zak_fact_func = function () {
         getProducts,
         postReview,
         getMsg,
-        productStore,
+        totalSalesPerStore,
         store
     }
 }

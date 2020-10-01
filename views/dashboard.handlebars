@@ -34,6 +34,20 @@
         <div class="row">
             <div class="col-12">
                 <h5>Total sales</h5>
+                <h1>{{totalSales}}</h1>
+
+        
+            
+
+            <ul>
+                {{#each bussiness}}
+                <li ><b>{{@key}} {{this}}</b></li>
+                {{/each}}
+            </ul>
+            
+        
+
+    
 
                 <h5>Best selling products</h5>
 
@@ -46,23 +60,23 @@
 
 
 
-<form action="/reviews" method="GET">
-                <div class="col-8">
-                    {{#if msg}}
-                    <div class="col-3">
-                        <div class="customer reviews">
+                <form action="/reviews" method="GET">
+                    <div class="col-8">
+                        {{#if msg}}
+                        <div class="col-3">
+                            <div class="customer reviews">
 
-                            <h4>
-                                customer reviews
-                            </h4>
-                            <p>{{msg}}</p>
+                                <h4>
+                                    customer reviews
+                                </h4>
+                                <p>{{msg}}</p>
+                            </div>
                         </div>
+
+                        {{/if}}
+
                     </div>
-
-                    {{/if}}
-
-                </div>
-</form>
+                </form>
 
 
 
@@ -73,7 +87,7 @@
 
 
             </div>
-        </div>
+
 
         <script>
             var myChart = new Chart(ctx, { ...});
