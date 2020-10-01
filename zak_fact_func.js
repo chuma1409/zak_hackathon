@@ -17,7 +17,7 @@ let zak_fact_func = function () {
          FULL OUTER JOIN  store_products
          ON stores.id = store_products.store_id
          WHERE id = store_id`)
-         console.log(storeName.rows)
+        //  console.log(storeName.rows)
 
         return storeName.rows;
 
@@ -30,7 +30,7 @@ let zak_fact_func = function () {
 
         const sql = 'select sum(price) from store_products where store_id = $1'
         let individualSales = await pool.query(sql, [storeId])
-        console.log(individualSales.rows)
+        // console.log(individualSales.rows)
 
         return individualSales.rows[0].sum;
     }

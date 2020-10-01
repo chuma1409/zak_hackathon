@@ -44,7 +44,7 @@ app.get("/login", function (req, res) {
 
 app.get('/', async function (req, res) {
     let userMessage = req.body.myreview;
-    console.log(userMessage);
+    // console.log(userMessage);
 
     if (userMessage) {
         req.flash('info', 'Review sent!');
@@ -141,6 +141,13 @@ app.post('/clearcart', async function (req, res) {
     res.render('viewcart', {
 
     })
+})
+
+app.post('/checkout', function (req, res) {
+    console.log(checkOut)
+    var checkOut = req.session.items; 
+
+    res.redirect('/')
 })
 
 app.get('/removeItem/:productId', async function (req, res) {

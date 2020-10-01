@@ -33,60 +33,93 @@
 
         <div class="row">
             <div class="col-12">
-                <h5>Total sales</h5>
-                <h1>{{totalSales}}</h1>
 
-        
-            
+                <table>
+                    <tr>
 
-            <ul>
-                {{#each bussiness}}
-                <li ><b>{{@key}} {{this}}</b></li>
-                {{/each}}
-            </ul>
-            
-        
+                        <th> product name</th>
+                        <th> units sold</th>
+                        <th>totals sales (R)</th>
+                        <th> Best selling products</th>
+                    </tr>
 
-    
+                    <tr>
+                      <td>  {{#each bussiness}}
+                       <b>{{@key}}</b></td>
+                          <td>
+                              <b>{{this}}</b>
+                            </td> 
+                        {{/each}}
+                        </tr>
 
-                <h5>Best selling products</h5>
 
-                <h5>customer reviews</h5>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+                    {{!-- <tr>{{totalSales}}</tr> --}}
 
 
 
-                <form action="/reviews" method="GET">
-                    <div class="col-8">
-                        {{#if msg}}
-                        <div class="col-3">
-                            <div class="customer reviews">
-
-                                <h4>
-                                    customer reviews
-                                </h4>
-                                <p>{{msg}}</p>
-                            </div>
-                        </div>
-
-                        {{/if}}
-
-                    </div>
-                </form>
-
-
-
-
-
-
-
-
+                </table>
 
             </div>
+        </div>
+
+            <div class="row" >
+
+            <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+            </div>
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Copper", 8.94, "#b87333"],
+        ["Silver", 10.49, "silver"],
+        ["Gold", 19.30, "gold"],
+        ["Platinum", 21.45, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+                       var options = {
+        title: "Density of Precious Metals, in g/cm^3",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+
+
+            <form action="/reviews" method="GET">
+                <div class="row">
+                    <div class="col-12">
+                        {{#if msg}}
+
+                        <div class="customer reviews">
+
+                            <h4>
+                                customer reviews
+                            </h4>
+                            <p>{{msg}}</p>
+                        </div>
+
+
+                        {{/if}}
+                    </div>
+                </div>
+            </form>
+        </div>
 
 
         <script>
