@@ -2,6 +2,8 @@ let zak_fact_func = function () {
 
     let cart = [];
 
+   let msg = '';
+
     const products = [{
         id: 17,
         description: "Shoez",
@@ -38,24 +40,23 @@ let zak_fact_func = function () {
         });
     }
 
-    // function addToCart(id) {
-    //     if (products.id == id) {
-    //         cart.push(id)
-    //         console.log(cart)
-    //         return cart
-    //     }
-    // }
 
-    // function removeItem(id){
-    // if(){}
+    function postReview(userMessage){
+        if(userMessage){
+        msg = userMessage
+        }
+    }
 
-    // }
+    function getMsg(){
+        return msg;
+    }
 
 
     return {
         getProductById,
         getProducts,
-        //addToCart
+        postReview,
+        getMsg
     }
 }
 

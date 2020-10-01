@@ -12,22 +12,23 @@
 
 <body>
     <div class="topnav">
-<div class="col-12">
-        <div class="row">
-<div class="col-4"> 
-    <h1 id="zak">Zakzuka!</h1></div>
-            <div class="col-8">
-                
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4">
+                    <h1 id="zak">Zakzuka!</h1>
+                </div>
+                <div class="col-8">
+
                     <a class="active" href="/">Home</a>
                     <a href="/viewcart">View Cart</a>
                     <a href="/dashboard">View Dashboard</a>
-                  <a href="/" id="back">BACK</a>
-                </div>
+                    <a href="/" id="back">BACK</a>
                 </div>
             </div>
         </div>
+    </div>
     <div class="container">
-      
+
         <h4>My Store Dashboard</h4>
 
         <div class="row">
@@ -42,20 +43,41 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sit debitis aliquid eveniet maxime voluptatem culpa nihil dignissimos, facilis
-                    minus quia nobis deleniti repellat error doloribus iure.
-                    At distinctio aperiam ducimus.
-                </p>
+
+
+
+<form action="/reviews" method="GET">
+                <div class="col-8">
+                    {{#if msg}}
+                    <div class="col-3">
+                        <div class="customer reviews">
+
+                            <h4>
+                                customer reviews
+                            </h4>
+                            <p>{{msg}}</p>
+                        </div>
+                    </div>
+
+                    {{/if}}
+
+                </div>
+</form>
+
+
+
+
+
+
+
 
 
             </div>
         </div>
 
         <script>
-    var myChart = new Chart(ctx, {...});
-</script>
+            var myChart = new Chart(ctx, { ...});
+        </script>
     </div>
     <script src="path/to/chartjs/dist/Chart.js"></script>
 </body>

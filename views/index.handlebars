@@ -32,14 +32,22 @@
         <div class="sidenav">
 
             <form action="/reviews" method="POST">
-            <p>We value your feedback! Please rate your experience with Zakzuka</p>
+            <p >We value your feedback! Please rate your experience with Zakzuka</p>
                 <label for="review">Review Zakzuka:</label>
 
-                <textarea id="review" name="review" rows="4" cols="30"></textarea>
+                <textarea  name="myreview" value="" rows="4" cols="30"></textarea>
                 <input type="submit" value="Submit">
             </form>
-
+  <div class="row">
+            <div class="col-12">
+                {{#if messages.info }}
+                <span class="flashMsg">{{messages.info}}</span>
+                {{/if}}
+            </div>
         </div>
+        </div>
+
+       
     </div>
     </div>
     <div class="container">

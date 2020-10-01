@@ -43,6 +43,13 @@ app.get("/login", function (req, res) {
 
 
 app.get('/', function (req, res) {
+    let userMessage = req.body.myreview;
+     console.log(userMessage);
+
+    if (userMessage) {
+        req.flash('info', 'Review sent!');
+      }
+     
 
     res.render('index', {
         updateCart: zak.getProducts()
@@ -59,10 +66,21 @@ app.get('/viewcart', function (req, res) {
 app.get('/dashboard', function (req, res) {
 
     res.render('dashboard', {
-
+        msg : zak.getMsg(),
     })
 });
 
+app.post('/reviews', function(req, res){
+    let userMessage = req.body.myreview;
+    if (userMessage) {
+        req.flash('info', 'Review sent!');
+      }
+
+      zak.postReview(userMessage)
+
+      res.redirect('/')
+
+})
 
 function addToCart(currentCart, productId) {
     let cart = currentCart;
@@ -122,7 +140,7 @@ app.get('/removeItem/:productId', function (req, res) {
 });
 
 
-const PORT = process.env.PORT || 3011;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, function () {
     console.log("App started at port:", PORT)
 });
