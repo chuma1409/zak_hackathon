@@ -1,4 +1,4 @@
-let zak_fact_func = function(){
+let zak_fact_func = function () {
 
     let cart = [];
 
@@ -10,7 +10,7 @@ let zak_fact_func = function(){
         id: 18,
         description: "Shirtz",
         price: 109.75
-    },{
+    }, {
         id: 17,
         description: "Shoez",
         price: 125.75
@@ -18,7 +18,7 @@ let zak_fact_func = function(){
         id: 18,
         description: "Shirtz",
         price: 109.75
-    },{
+    }, {
         id: 17,
         description: "Shoez",
         price: 125.75
@@ -26,36 +26,36 @@ let zak_fact_func = function(){
         id: 18,
         description: "Shirtz",
         price: 109.75
-    }   ];
+    }];
 
     function getProducts() {
         return products;
     }
 
     function getProductById(id) {
-        return products.find(function(product){
+        return products.find(function (product) {
             return product.id == id;
         });
     }
 
-function addToCart(id){
-if(products.id == id){
-cart.push(id)
-console.log(cart)
-return cart
-}
-}
+    // function addToCart(id) {
+    //     if (products.id == id) {
+    //         cart.push(id)
+    //         console.log(cart)
+    //         return cart
+    //     }
+    // }
 
-// function removeItem(id){
-// if(){}
-    
-// }
+    // function removeItem(id){
+    // if(){}
+
+    // }
 
 
-    return{
+    return {
         getProductById,
         getProducts,
-        addToCart
+        //addToCart
     }
 }
 

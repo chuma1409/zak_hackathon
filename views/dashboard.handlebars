@@ -11,19 +11,22 @@
 </head>
 
 <body>
-    <div class="container">
-
-          <div class="row">
-<div class="col-4"> <h1>Zakzuka!</h1></div>
+    <div class="topnav">
+<div class="col-12">
+        <div class="row">
+<div class="col-4"> 
+    <h1 id="zak">Zakzuka!</h1></div>
             <div class="col-8">
-                <div class="topnav">
+                
                     <a class="active" href="/">Home</a>
                     <a href="/viewcart">View Cart</a>
                     <a href="/dashboard">View Dashboard</a>
-                   <a href ="/">Back</a> 
+                  <a href="/" id="back">BACK</a>
+                </div>
                 </div>
             </div>
         </div>
+    <div class="container">
       
         <h4>My Store Dashboard</h4>
 
@@ -49,7 +52,12 @@
 
             </div>
         </div>
+
+        <script>
+    var myChart = new Chart(ctx, {...});
+</script>
     </div>
+    <script src="path/to/chartjs/dist/Chart.js"></script>
 </body>
 
 </html>

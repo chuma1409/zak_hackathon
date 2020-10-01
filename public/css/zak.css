@@ -1,13 +1,49 @@
 body {
-  background-color: blanchedalmond;
+  background-color:white;
 }
+
+.container {
+  background-color: white;
+  margin-top: 2em;
+  float: right;
+    
+}
+
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed; 
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: lightgrey;
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-top: 169px;
+  padding-bottom: 100px;
+  margin-left: 4px;
+}
+
+/* .sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+} */
 #zak{
   padding-left: 5em;
+  
 }
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: white;
+  background-color: rgb(163, 141, 40);
   overflow: hidden;
+  margin-top: 2em;
+  /* padding-top: 0em;
+  padding-bottom: 0em; */
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 /* Style the links inside the navigation bar */
@@ -28,10 +64,10 @@ body {
 }
 
 /* Add a color to the active/current link */
-.topnav a.active {
+/* .topnav a.active {
  background-color: white; 
   color: black;
-}
+} */
 
 #back {
   background-color: cadetblue;
@@ -41,6 +77,10 @@ body {
   font-weight: bold;
 }
 
+.items {
+  background-color: lightgrey;
+  padding: 1em;
+}
 .checked {
     color: orange;
   }
@@ -57,3 +97,11 @@ body {
   .removeitem{
     font-size: small;
   }
+.reviews {
+  float: right;
+}
+  
+
+
+
+  

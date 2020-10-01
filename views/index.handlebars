@@ -10,48 +10,65 @@
 </head>
 
 <body>
-    
-        <div class="topnav">
-<div class="col-12">
-        <div class="row">
-<div class="col-4"> 
-    <h1 id="zak">Zakzuka!</h1></div>
-            <div class="col-8">
-                
+
+    <div class="topnav">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4">
+                    <h1 id="zak">Zakzuka!</h1>
+                </div>
+                <div class="col-8">
+
                     <a class="active" href="/">Home</a>
                     <a href="/viewcart">View Cart</a>
                     <a href="/dashboard">View Dashboard</a>
-                  
-                </div>
+
                 </div>
             </div>
         </div>
-        <div class="container">
-        <div class="row">
-            <div class="col-12">
+    </div>
 
+    <div class="col-4">
+        <div class="sidenav">
+
+            <form action="/reviews" method="POST">
+            <p>We value your feedback! Please rate your experience with Zakzuka</p>
+                <label for="review">Review Zakzuka:</label>
+
+                <textarea id="review" name="review" rows="4" cols="30"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
                 {{#each updateCart }}
                 <div class="col-3">
-                    <h4>
-                        {{description}}
-                    </h4>
-                    <strong>{{price}}</strong>
+                    <div class="items">
 
-                    <form action="/cart" method="POST">
-                        <input type="hidden" name="productId" value="{{id}}">
-                        <button>add to cart</button>
-                    </form>
+                        <h4>
+                            {{description}}
+                        </h4>
+                        <strong>{{price}}</strong>
 
+                        <form action="/cart" method="POST">
+                            <input type="hidden" name="productId" value="{{id}}">
+                            <button>add to cart</button>
+                        </form>
+                    </div>
                 </div>
+
                 {{/each}}
 
             </div>
 
+
         </div>
 
 
-    </div>
-    </div>
 </body>
 
 </html>

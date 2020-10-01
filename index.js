@@ -104,8 +104,6 @@ app.post('/clearcart', function (req, res) {
 
 app.get('/removeItem/:productId', function (req, res) {
 
-
-    
     // let itemsArray = req.session.cart.items.push(product)
 
     const productId = req.params.productId;
