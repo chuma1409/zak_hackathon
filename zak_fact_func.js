@@ -10,14 +10,39 @@ let zak_fact_func = function () {
     let msg = '';
 
     let getProducts = async function () {
-        let products = await pool.query(`SELECT * FROM   store_products`);
-        console.log(products.rows)
-        return products.rows
+        
+        let storeName = await pool.query(
+            `SELECT store_name, store_products.description, store_products.price
+         FROM stores 
+         FULL OUTER JOIN  store_products
+         ON stores.id = store_products.store_id
+         WHERE id = store_id`)
+
+        return storeName.rows;
+
 
     }
 
+    let productStore = async function () {
+        let storeName = await pool.query(
+            `SELECT store_name, store_products.description, store_products.price
+         FROM stores 
+         FULL OUTER JOIN  store_products
+         ON stores.id = store_products.store_id
+         WHERE id = store_id`)
 
-    function getProductById(id) {
+        console.log(storeName.rows)
+
+    }
+
+    let store = async function(){
+
+         let store = await productStore()
+
+    }
+
+    async function getProductById(id) {
+        let products = await getProducts();
         return products.find(function (product) {
             return product.id == id;
         });
@@ -40,6 +65,8 @@ let zak_fact_func = function () {
         getProducts,
         postReview,
         getMsg,
+        productStore,
+        store
     }
 }
 

@@ -44,15 +44,16 @@ app.get("/login", function (req, res) {
 
 app.get('/', async function (req, res) {
     let userMessage = req.body.myreview;
-     console.log(userMessage);
+    console.log(userMessage);
 
     if (userMessage) {
         req.flash('info', 'Review sent!');
-      }
-     
+    }
+
 
     res.render('index', {
-        updateCart: await zak.getProducts()
+        updateCart: await zak.getProducts(),
+        storeName: await zak.productStore()
     });
 
 
@@ -66,19 +67,19 @@ app.get('/viewcart', function (req, res) {
 app.get('/dashboard', function (req, res) {
 
     res.render('dashboard', {
-        msg : zak.getMsg(),
+        msg: zak.getMsg(),
     })
 });
 
-app.post('/reviews', function(req, res){
+app.post('/reviews', function (req, res) {
     let userMessage = req.body.myreview;
     if (userMessage) {
         req.flash('info', 'Review sent!');
-      }
+    }
 
-      zak.postReview(userMessage)
+    zak.postReview(userMessage)
 
-      res.redirect('/')
+    res.redirect('/')
 
 })
 
@@ -96,14 +97,14 @@ function addToCart(currentCart, productId) {
     const product = zak.getProductById(productId);
     cart.items.push(product)
     cart.total += product.price;
-    
+
     return cart;
 }
 
 app.post('/cart', function (req, res) {
 
     req.session.cart = addToCart(req.session.cart, req.body.productId);
-    
+
     res.redirect('/')
 })
 
@@ -128,13 +129,13 @@ app.get('/removeItem/:productId', function (req, res) {
 
     const product = zak.getProductById(productId);
 
-    req.session.cart.items = req.session.cart.items.filter(function(item){
-          return item.id != productId
+    req.session.cart.items = req.session.cart.items.filter(function (item) {
+        return item.id != productId
     });
 
     req.session.cart.total -= product.price;
 
-    
+
     res.redirect("/viewcart");
 
 });

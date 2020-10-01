@@ -56,11 +56,13 @@
                 {{#each updateCart }}
                 <div class="col-3">
                     <div class="items">
-
+                     
                         <h4>
                             {{description}}
                         </h4>
-                        <strong>{{price}}</strong>
+                        <strong>R{{price}}</strong>
+
+                         <H6>{{store_name}}</H6>
 
                         <form action="/cart" method="POST">
                             <input type="hidden" name="productId" value="{{id}}">
