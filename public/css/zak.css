@@ -24,13 +24,7 @@ body {
   margin-left: 4px;
 }
 
-/* .sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-} */
+
 #zak{
   padding-left: 5em;
   
@@ -79,7 +73,10 @@ body {
 
 .items {
   background-color: lightgrey;
-  padding: 1em;
+  padding-left: 2em;
+  padding-top: 0.1em;
+  padding-right: 2em;
+  padding-bottom: 0.5em;
 }
 .checked {
     color: orange;
@@ -99,6 +96,12 @@ body {
   }
 .reviews {
   float: right;
+}
+
+.customerReviews {
+  background-color: lightgray;
+  padding: 2em;
+  padding-top: 0.5em;
 }
   
 

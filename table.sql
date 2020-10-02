@@ -40,4 +40,5 @@ insert into store_products (product_id, description, price, units_sold, store_id
 
 insert into store_products (product_id, description, price, units_sold, store_id) values('H','Coffee cups', 15.0, 0, 2);
 
-UPDATE store_products (product_id, description, price, units_sold, store_id) values('H','Coffee cups', 15.0, 0, 2);
+UPDATE store_products 
+('H','Coffee cups', 15.0, 0, 2);

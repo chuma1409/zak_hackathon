@@ -31,13 +31,16 @@
 
         <h4>My Store Dashboard</h4>
 
+
+        <h2>{{store_name}}</h2>
+
+
         <div class="row">
             <div class="col-10">
 
                 <table>
                     <tr>
 
-                        <th>Store name</th>
                         <th>Product name</th>
                         <th>Units sold</th>
                         <th>Totals sales (R)</th>
@@ -46,9 +49,7 @@
                     {{#each rows}}
                     <tr>
                             
-                        <td>
-                            {{store_name}}        
-                        </td>
+                        
                         <td>
                             {{description}}        
                         </td>

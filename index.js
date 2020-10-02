@@ -65,32 +65,32 @@ app.get('/viewcart', async function (req, res) {
         cart: await req.session.cart || {}
     })
 })
+
 app.get('/dashboard', async function (req, res) {
-
-    const sum = req.session.cart;
-    const { items } = sum || []
-
-    // console.log(sum.items);
-    var bussiness = {};
-
-    for (let i = 0; i < items.length; i++) {
-        const element = items[i].store_name;
-        const price = Number(items[i].price);
-        if(bussiness[element] === undefined) {
-            bussiness[element] = 0;
-        }
-        bussiness[element] += price;
-        
-    }
-
-
     
-    res.render('dashboard', {
+    const data = {
         msg: zak.getMsg(),
-        i: (sum && sum.total) ? sum.total : 0,
-        bussiness,
-        // stores: (sum && sum.items) ? sum.items : []
-    })
+        rows: await zak.getDashboardData()    
+    };
+
+    console.log(data)
+    
+    res.render('dashboard', data)
+});
+
+app.get('/dashboard/:id', async function (req, res) {
+    
+    const rows = await zak.getDashboardDataByStore(req.params.id);
+
+    const store_name = rows[0].store_name;
+
+    const data = {
+        msg: zak.getMsg(),
+        rows,
+        store_name   
+    };
+    
+    res.render('dashboard_store', data)
 });
 
 app.post('/reviews', function (req, res) {
@@ -130,24 +130,36 @@ app.post('/cart',async function (req, res) {
     res.redirect('/')
 })
 
-app.post('/clearcart', async function (req, res) {
-    if ( await req.session.cart) {
+function clearCart(req) {
+
+    if ( req.session.cart) {
         req.session.cart = {
             items: [],
             total: 0
         }
     };
 
+}
+
+
+app.post('/clearcart', async function (req, res) {
+    
+    clearCart(req);
+
     res.render('viewcart', {
 
     })
 })
 
-app.post('/checkout', function (req, res) {
-    console.log(checkOut)
-    var checkOut = req.session.items; 
+app.post('/checkout', async function (req, res) {
+    // let productName = req.session.cart.items;  
+    // console.log(productName) ;
+    let checkout = await zak.storeInDb(req.session.cart);
+    
+    clearCart(req);
 
     res.redirect('/')
+    // return checkout;
 })
 
 app.get('/removeItem/:productId', async function (req, res) {
