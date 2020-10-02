@@ -66,7 +66,7 @@ app.get('/viewcart', async function (req, res) {
     })
 })
 
-app.get('/dashboard', async function (req, res) {
+app.get('/dashboard_store', async function (req, res) {
     
     const data = {
         msg: zak.getMsg(),
@@ -75,10 +75,10 @@ app.get('/dashboard', async function (req, res) {
 
     console.log(data)
     
-    res.render('dashboard', data)
+    res.render('dashboard_store', data)
 });
 
-app.get('/dashboard/:id', async function (req, res) {
+app.get('/dashboard_store/:id', async function (req, res) {
     
     const rows = await zak.getDashboardDataByStore(req.params.id);
 
