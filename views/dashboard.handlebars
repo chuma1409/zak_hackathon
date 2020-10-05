@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/zak.css">
+    <link rel="stylesheet" href="/css/simple-grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>store dashboard</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4">
+                    <h1 id="zak">Zakzuka!</h1>
+                </div>
+                <div class="col-8">
+
+                    <a class="active" href="/">Home</a>
+                    <a href="/viewcart">View Cart</a>
+                    <a href="/dashboard_store">View Dashboard</a>
+                    <a href="/" id="back">BACK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <h4>My Store Dashboard</h4>
+
+        <div class="row">
+            <div class="col-10">
+
+                <table>
+                    <tr>
+
+                        <th>Store name</th>
+                        <th>Product name</th>
+                        <th>Units sold</th>
+                        <th>Totals sales (R)</th>
+                    </tr>
+
+                    {{#each rows}}
+                    <tr>
+                            
+                        <td>
+                            {{store_name}}        
+                        </td>
+                        <td>
+                            {{description}}        
+                        </td>
+                        <td>
+                            {{units_sold}}        
+                        </td>
+                        <td>
+                            R{{total_sales}}
+                        </td>
+                      
+
+
+                    </tr>
+                    {{/each}}
+
+
+                    {{!-- <tr>{{totalSales}}</tr> --}}
+
+
+
+                </table>
+
+            </div>
+            </div>
+
+        <div class="row">
+            <form action="/reviews" method="GET">
+                <div class="col-12">
+                    {{#if msg}}
+
+                    <div class="customerReviews">
+
+                        <h4>
+                            Customer Reviews
+                        </h4>
+                        <p>{{msg}}</p>
+                    </div>
+
+
+                    {{/if}}
+                </div>
+            </form>
+
+        </div>
+        
+
+    </div>
+</body>
+
+</html>

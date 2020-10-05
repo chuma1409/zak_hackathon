@@ -1,29 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zakzuka!</title>
+    <labelnk rel="stylesheet" href="./css/zak.css">
+        <labelnk rel="stylesheet" href="./css/simple-grid.css">
+            <title>Zakzuka!</title>
 </head>
-<body>
-    <div class="container">
-    <div class="row">
-<div class="col-12">
-    <h1>Zakzuka</h1>
-    <ul>
-        <li>product 1</li>
-        <li>product 2</li>
-        <li>product 3</li>
-        <li>product 4</li>
-        <li>product 5</li>
-        <li>product 6</li>
-        <li>product 7</li>
-        <li>product 8</li>
-        <li>product 9</li>
 
-    </ul>
-</div>
-</div>
+<body>
+
+    <div class="topnav">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4">
+                    <h1 id="zak">Zakzuka!</h1>
+                </div>
+                <div class="col-8">
+
+                    <a class="active" href="/">Home</a>
+                    <a href="/viewcart">View Cart</a>
+                    <a href="/dashboard_store">View Dashboard</a>
+
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="col-2">
+        <div class="sidenav">
+
+            <form action="/reviews" method="POST">
+            <p >We value your feedback! Please rate your experience with Zakzuka</p>
+                <label for="review">Review Zakzuka:</label>
+
+                <textarea  name="myreview" value="" rows="4" cols="30"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+  <div class="row">
+            <div class="col-12">
+                {{#if messages.info }}
+                <span class="flashMsg">{{messages.info}}</span>
+                {{/if}}
+            </div>
+        </div>
+        </div>
+
+       
+    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                {{#each updateCart }}
+                <div class="col-3">
+                    <div class="items">
+                     
+                        <h4>
+                            {{description}}
+                        </h4>
+                        <strong>R{{price}}</strong>
+
+                         <H6>{{store_name}}</H6>
+
+                        <form action="/cart" method="POST">
+                            <input type="hidden" name="productId" value="{{id}}">
+                            <button>add to cart</button>
+                        </form>
+                    </div>
+                </div>
+
+                {{/each}}
+
+            </div>
+
+
+        </div>
+
+
 </body>
+
 </html>

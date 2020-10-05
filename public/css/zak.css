@@ -1,0 +1,110 @@
+body {
+  background-color:white;
+}
+
+.container {
+  background-color: white;
+  margin-top: 2em;
+  float: right;
+    
+}
+
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed; 
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: lightgrey;
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-top: 169px;
+  padding-bottom: 100px;
+  margin-left: 4px;
+}
+
+
+#zak{
+  padding-left: 5em;
+  
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: rgb(163, 141, 40);
+  overflow: hidden;
+  margin-top: 2em;
+  /* padding-top: 0em;
+  padding-bottom: 0em; */
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  padding-top: 3em;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+/* .topnav a.active {
+ background-color: white; 
+  color: black;
+} */
+
+#back {
+  background-color: cadetblue;
+  padding: 1em;
+  margin-top: 2em;
+  float: left;
+  font-weight: bold;
+}
+
+.items {
+  background-color: lightgrey;
+  padding-left: 2em;
+  padding-top: 0.1em;
+  padding-right: 2em;
+  padding-bottom: 0.5em;
+}
+.checked {
+    color: orange;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    padding: 1em;
+  }
+
+  .removeitem{
+    font-size: small;
+  }
+.reviews {
+  float: right;
+}
+
+.customerReviews {
+  background-color: lightgray;
+  padding: 2em;
+  padding-top: 0.5em;
+}
+  
+
+
+
+  
